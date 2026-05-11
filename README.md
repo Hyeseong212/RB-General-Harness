@@ -23,6 +23,7 @@
 
 - [회사 역할별 에이전트 적용 맵](docs/company-role-agent-map.md)
 - [개발 하네싱 가이드](docs/guides/development-harnessing.md)
+- [개발 에이전트 코딩 원칙](docs/guides/development/agents.md)
 - [디자인 하네싱 가이드](docs/guides/design-harnessing.md)
 - [기획 하네싱 가이드](docs/guides/planning-harnessing.md)
 - [Task 브리프 템플릿](templates/task-brief.md)
