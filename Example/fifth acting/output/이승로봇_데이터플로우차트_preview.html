@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>이승로봇 데이터 플로우 차트 프리뷰</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f7f8f3;
+      color: #17202a;
+      font-family: Pretendard, "Noto Sans KR", Arial, sans-serif;
+    }
+    main {
+      width: min(100vw, 1600px);
+      margin: 0 auto;
+      padding: 28px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+    p {
+      margin: 0 0 20px;
+      color: #65717d;
+      font-size: 15px;
+    }
+    .stage {
+      border: 1px solid #d9e1d7;
+      background: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    object {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>데이터 플로우 차트</h1>
+    <p>환자 화면 액션, 세션 상태, 센서/이벤트 로그, 안전 입력, 치료사 조회 화면까지 이어지는 데이터 흐름 샘플입니다.</p>
+    <div class="stage">
+      <object data="./이승로봇_데이터플로우차트.svg" type="image/svg+xml" aria-label="이승로봇 데이터 플로우 차트"></object>
+    </div>
+  </main>
+</body>
+</html>

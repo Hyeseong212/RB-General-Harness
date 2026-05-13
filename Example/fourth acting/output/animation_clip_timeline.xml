@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animationClip id="game-rehab-connected-screen-sample" name="이승로봇 연결 화면 애니메이션 클립" version="0.1">
+  <meta>
+    <createdAt>2026-05-12</createdAt>
+    <stage>fourth acting</stage>
+    <screenWidth>1080</screenWidth>
+    <screenHeight>1920</screenHeight>
+    <durationMs>18000</durationMs>
+    <loop>true</loop>
+    <purpose>개발 인계용 연결 화면 애니메이션 샘플</purpose>
+  </meta>
+  <screens>
+    <screen id="P-01" name="운동 선택" startMs="0" endMs="3000">
+      <visibleComponents>exerciseCard, disabledExerciseCard, backButton</visibleComponents>
+      <transition event="tapExercise" next="P-02"/>
+    </screen>
+    <screen id="P-02" name="미션 안내" startMs="3000" endMs="6000">
+      <visibleComponents>missionSummary, safetyCopy, startButton, backButton</visibleComponents>
+      <transition event="tapStart" next="P-03"/>
+    </screen>
+    <screen id="P-03" name="미션 수행" startMs="6000" endMs="10000">
+      <visibleComponents>timer, targetReaction, restButton, stopButton</visibleComponents>
+      <transition event="tapRest" next="P-04A"/>
+    </screen>
+    <screen id="P-04A" name="쉬어가기" startMs="10000" endMs="13000">
+      <visibleComponents>restTimer, restCopy, resumeButton, stopButton</visibleComponents>
+      <transition event="tapResume" next="P-03"/>
+    </screen>
+    <screen id="P-03-return" name="미션 수행 복귀" startMs="13000" endMs="15000">
+      <visibleComponents>timer, targetReaction</visibleComponents>
+      <transition event="timerEnd" next="P-05"/>
+    </screen>
+    <screen id="P-05" name="완료 요약" startMs="15000" endMs="18000">
+      <visibleComponents>summaryCard, summaryList, saveButton, retryButton</visibleComponents>
+      <transition event="session_completed" next="exit"/>
+    </screen>
+  </screens>
+  <safetyNotes>
+    <note>치료, 회복, 효과 입증으로 읽힐 수 있는 문구를 애니메이션 안에 넣지 않는다.</note>
+    <note>센서 입력값, 중단 기준, 환자 피드백 문구는 재활 전문가 확인 후 확정한다.</note>
+  </safetyNotes>
+</animationClip>

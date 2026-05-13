@@ -1,0 +1,107 @@
+{
+  "stage": "fifth acting",
+  "version": "v2",
+  "createdAt": "2026-05-12",
+  "name": "이승로봇 게임재활 데이터 플로우 샘플 V2",
+  "screenBase": {
+    "width": 1080,
+    "height": 1920
+  },
+  "rule": "상태 흐름을 데이터 흐름처럼 그리지 않는다. 화면 입력, API write/read, 저장 테이블, 조회 화면을 분리한다.",
+  "stores": [
+    {
+      "name": "Exercise",
+      "kind": "master",
+      "purpose": "운동 선택 카드와 검토 상태 표시",
+      "fields": ["exerciseId", "name", "durationSec", "reviewStatus", "safetyCopy"]
+    },
+    {
+      "name": "Session",
+      "kind": "transaction",
+      "purpose": "한 번의 미션 수행 단위와 현재 상태 저장",
+      "fields": ["sessionId", "exerciseId", "patientId", "state", "startedAt", "completedAt"]
+    },
+    {
+      "name": "EventLog",
+      "kind": "event",
+      "purpose": "화면 액션, 타이머, 센서 이벤트 저장",
+      "fields": ["eventId", "sessionId", "eventName", "payload", "timestamp"]
+    },
+    {
+      "name": "SafetyInput",
+      "kind": "safety",
+      "purpose": "중단 입력 화면에서 환자가 입력한 안전 관련 값",
+      "fields": ["sessionId", "pain", "fatigue", "dizziness", "reason", "memo"]
+    },
+    {
+      "name": "TherapistMemo",
+      "kind": "note",
+      "purpose": "치료사가 세션 상세 화면에서 남긴 관찰 메모",
+      "fields": ["memoId", "sessionId", "authorRole", "body", "createdAt"]
+    }
+  ],
+  "writes": [
+    {
+      "source": "P-02 시작 버튼",
+      "api": "POST /sessions",
+      "eventName": "tapStart",
+      "writes": ["Session", "EventLog"],
+      "payload": ["exerciseId", "patientId", "state=ACTIVE"]
+    },
+    {
+      "source": "P-03 타이머/센서 입력",
+      "api": "POST /event-logs",
+      "eventName": "timer_tick | movement_tick",
+      "writes": ["EventLog"],
+      "payload": ["sessionId", "elapsedMs", "remainingSec", "source", "value", "timestamp"]
+    },
+    {
+      "source": "P-04B 중단 입력",
+      "api": "POST /safety-inputs",
+      "eventName": "stop_reason_saved",
+      "writes": ["SafetyInput", "EventLog"],
+      "payload": ["sessionId", "pain", "fatigue", "dizziness", "reason", "memo"]
+    },
+    {
+      "source": "P-05 저장하고 나가기",
+      "api": "PATCH /sessions/{id}",
+      "eventName": "session_completed",
+      "writes": ["Session", "EventLog"],
+      "payload": ["sessionId", "state=COMPLETE", "durationSec", "completedAt"]
+    },
+    {
+      "source": "T-01 메모 저장",
+      "api": "POST /therapist-memos",
+      "eventName": "memo_saved",
+      "writes": ["TherapistMemo"],
+      "payload": ["sessionId", "authorRole=therapist", "body"]
+    }
+  ],
+  "reads": [
+    {
+      "targetScreen": "P-01 운동 목록",
+      "api": "GET /exercises",
+      "reads": ["Exercise"],
+      "shows": ["name", "durationSec", "reviewStatus", "safetyCopy"]
+    },
+    {
+      "targetScreen": "P-05 완료 요약",
+      "api": "GET /sessions/{id}/summary",
+      "reads": ["Session", "EventLog", "SafetyInput"],
+      "shows": ["durationSec", "event count", "stop reason", "fatigue"],
+      "note": "Summary는 별도 저장 테이블이 아니라 화면용 read model로 본다."
+    },
+    {
+      "targetScreen": "T-01 세션 상세",
+      "api": "GET /sessions/{id}/detail",
+      "reads": ["Session", "EventLog", "SafetyInput", "TherapistMemo"],
+      "shows": ["summary cards", "event timeline", "safety input", "memo"]
+    }
+  ],
+  "requiresExpertReview": [
+    "movement_tick.value의 의미와 단위",
+    "pain/fatigue/dizziness 허용값",
+    "중단 기준과 환자 피드백 문구",
+    "외부 발표 가능한 안전 문구"
+  ]
+}

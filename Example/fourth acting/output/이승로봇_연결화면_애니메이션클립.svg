@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">이승로봇 게임재활 연결 화면 애니메이션 클립</title>
+  <desc id="desc">1080x1920 모바일 화면 기준으로 P-01 운동 선택부터 P-05 완료 요약까지 연결 화면과 이벤트 전이를 18초 루프로 보여주는 SVG XML 애니메이션 샘플</desc>
+  <style><![CDATA[
+    :root {
+      --bg: #f7f8f3;
+      --paper: #ffffff;
+      --ink: #17202a;
+      --muted: #65717d;
+      --line: #d9e1d7;
+      --green: #24a36b;
+      --green-dark: #0f6a4a;
+      --blue: #356ae6;
+      --blue-soft: #e8eeff;
+      --coral: #ff6b4a;
+      --coral-soft: #ffe8df;
+      --yellow: #f6c344;
+      --yellow-soft: #fff5cc;
+      --mint-soft: #e2f7ec;
+      --slate-soft: #eef2f4;
+      --dark: #111a24;
+    }
+    svg { background: var(--bg); font-family: Pretendard, "Noto Sans KR", Arial, sans-serif; }
+    text { fill: var(--ink); }
+    .muted { fill: var(--muted); }
+    .small { font-size: 18px; }
+    .label { font-size: 22px; font-weight: 700; }
+    .title { font-size: 56px; font-weight: 800; letter-spacing: 0; }
+    .phone-frame { fill: var(--dark); }
+    .screen-bg { fill: var(--paper); }
+    .pill { rx: 20; ry: 20; }
+    .card { rx: 22; ry: 22; }
+    .button { rx: 24; ry: 24; }
+    .rule { stroke: var(--line); stroke-width: 2; }
+    .screen {
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation-duration: 18s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+    .s1 { animation-name: screen1; }
+    .s2 { animation-name: screen2; }
+    .s3 { animation-name: screen3; }
+    .s4 { animation-name: screen4; }
+    .s5 { animation-name: screen5; }
+    .s6 { animation-name: screen6; }
+    @keyframes screen1 {
+      0%, 13% { opacity: 1; transform: translateX(0); }
+      18%, 100% { opacity: 0; transform: translateX(-32px); }
+    }
+    @keyframes screen2 {
+      0%, 14% { opacity: 0; transform: translateX(32px); }
+      18%, 30% { opacity: 1; transform: translateX(0); }
+      35%, 100% { opacity: 0; transform: translateX(-32px); }
+    }
+    @keyframes screen3 {
+      0%, 31% { opacity: 0; transform: translateX(32px); }
+      35%, 55% { opacity: 1; transform: translateX(0); }
+      60%, 100% { opacity: 0; transform: translateX(-32px); }
+    }
+    @keyframes screen4 {
+      0%, 56% { opacity: 0; transform: translateX(32px); }
+      60%, 71% { opacity: 1; transform: translateX(0); }
+      76%, 100% { opacity: 0; transform: translateX(-32px); }
+    }
+    @keyframes screen5 {
+      0%, 72% { opacity: 0; transform: translateX(32px); }
+      76%, 83% { opacity: 1; transform: translateX(0); }
+      88%, 100% { opacity: 0; transform: translateX(-32px); }
+    }
+    @keyframes screen6 {
+      0%, 84% { opacity: 0; transform: translateX(32px); }
+      88%, 100% { opacity: 1; transform: translateX(0); }
+    }
+    .tap-ripple {
+      fill: none;
+      stroke: var(--green);
+      stroke-width: 5;
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: ripple 18s infinite ease-out;
+    }
+    .r1 { animation-delay: 1.6s; }
+    .r2 { animation-delay: 4.8s; stroke: var(--green); }
+    .r3 { animation-delay: 9.4s; stroke: var(--blue); }
+    .r4 { animation-delay: 12.2s; stroke: var(--green); }
+    .r5 { animation-delay: 15.0s; stroke: var(--green); }
+    @keyframes ripple {
+      0%, 5% { opacity: 0; transform: scale(.4); }
+      6% { opacity: .9; transform: scale(.65); }
+      11% { opacity: 0; transform: scale(1.35); }
+      12%, 100% { opacity: 0; transform: scale(1.35); }
+    }
+    .event {
+      opacity: .25;
+      animation-duration: 18s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+    .e1 { animation-name: event1; }
+    .e2 { animation-name: event2; }
+    .e3 { animation-name: event3; }
+    .e4 { animation-name: event4; }
+    .e5 { animation-name: event5; }
+    @keyframes event1 { 0%, 16% { opacity: 1; } 20%, 100% { opacity: .25; } }
+    @keyframes event2 { 0%, 16% { opacity: .25; } 18%, 33% { opacity: 1; } 37%, 100% { opacity: .25; } }
+    @keyframes event3 { 0%, 35% { opacity: .25; } 38%, 58% { opacity: 1; } 62%, 100% { opacity: .25; } }
+    @keyframes event4 { 0%, 60% { opacity: .25; } 63%, 74% { opacity: 1; } 78%, 100% { opacity: .25; } }
+    @keyframes event5 { 0%, 82% { opacity: .25; } 86%, 100% { opacity: 1; } }
+    .progress-dot { opacity: .28; animation-duration: 18s; animation-iteration-count: infinite; }
+    .d1 { animation-name: dot1; } .d2 { animation-name: dot2; } .d3 { animation-name: dot3; }
+    .d4 { animation-name: dot4; } .d5 { animation-name: dot5; } .d6 { animation-name: dot6; }
+    @keyframes dot1 { 0%, 16% { opacity: 1; } 18%, 100% { opacity: .28; } }
+    @keyframes dot2 { 0%, 16% { opacity: .28; } 18%, 33% { opacity: 1; } 35%, 100% { opacity: .28; } }
+    @keyframes dot3 { 0%, 33% { opacity: .28; } 35%, 58% { opacity: 1; } 60%, 100% { opacity: .28; } }
+    @keyframes dot4 { 0%, 58% { opacity: .28; } 60%, 74% { opacity: 1; } 76%, 100% { opacity: .28; } }
+    @keyframes dot5 { 0%, 74% { opacity: .28; } 76%, 86% { opacity: 1; } 88%, 100% { opacity: .28; } }
+    @keyframes dot6 { 0%, 86% { opacity: .28; } 88%, 100% { opacity: 1; } }
+    .motion-target {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: targetPulse 1.2s infinite ease-in-out;
+    }
+    @keyframes targetPulse {
+      0%, 100% { transform: scale(.92); opacity: .95; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+  ]]></style>
+
+  <rect width="1920" height="1080" fill="#f7f8f3"/>
+  <text x="96" y="98" class="small" fill="#0f6a4a" font-weight="800">fourth acting output</text>
+  <text x="96" y="174" class="title">연결 화면 애니메이션 클립</text>
+  <text x="100" y="226" class="label muted">1080x1920 기준 · SVG(XML) 샘플 · 18초 루프</text>
+
+  <g transform="translate(150 260)">
+    <rect class="phone-frame" x="0" y="0" width="420" height="746" rx="24"/>
+    <rect class="screen-bg" x="20" y="26" width="380" height="675" rx="14"/>
+    <text x="314" y="48" class="small muted" font-size="13" font-weight="700">1080x1920</text>
+    <clipPath id="phoneClip">
+      <rect x="20" y="26" width="380" height="675" rx="14"/>
+    </clipPath>
+
+    <g clip-path="url(#phoneClip)">
+      <g class="screen s1">
+        <text x="58" y="82" class="label" fill="#0f6a4a">P-01 운동 선택</text>
+        <text x="58" y="132" font-size="27" font-weight="800">오늘 할 미션</text>
+        <rect x="58" y="180" width="304" height="104" rx="14" fill="#e2f7ec"/>
+        <text x="98" y="228" font-size="24" font-weight="800" fill="#24a36b">팔 앞으로 뻗기</text>
+        <text x="98" y="264" class="small muted">30초 · 앉아서 수행</text>
+        <circle class="tap-ripple r1" cx="210" cy="232" r="88"/>
+        <rect x="58" y="314" width="304" height="104" rx="14" fill="#e8eeff"/>
+        <text x="98" y="362" font-size="22" font-weight="800" fill="#356ae6">손 쥐었다 펴기</text>
+        <text x="98" y="398" class="small muted">20회 · 검토 완료</text>
+        <rect x="58" y="448" width="304" height="104" rx="14" fill="#ffe8df"/>
+        <text x="98" y="496" font-size="22" font-weight="800" fill="#ff6b4a">무릎 펴기</text>
+        <text x="98" y="532" class="small muted">전문가 확인 후 사용</text>
+      </g>
+
+      <g class="screen s2">
+        <text x="58" y="82" class="label" fill="#0f6a4a">P-02 미션 안내</text>
+        <text x="58" y="134" font-size="27" font-weight="800">팔 앞으로 뻗기</text>
+        <rect x="58" y="190" width="304" height="92" rx="14" fill="#e2f7ec"/>
+        <text x="82" y="236" class="small" font-weight="800" fill="#0f6a4a">목표: 30초 동안 천천히 뻗기</text>
+        <rect x="58" y="318" width="304" height="148" rx="14" fill="#eef2f4"/>
+        <text x="82" y="360" font-size="21" font-weight="800">주의</text>
+        <text x="82" y="398" class="small">통증·어지러움이 있으면</text>
+        <text x="82" y="430" class="small">중단 입력을 선택하세요.</text>
+        <rect x="58" y="552" width="304" height="58" rx="16" fill="#24a36b"/>
+        <text x="184" y="590" font-size="22" font-weight="800" fill="#ffffff">시작</text>
+        <circle class="tap-ripple r2" cx="210" cy="580" r="90"/>
+      </g>
+
+      <g class="screen s3">
+        <text x="58" y="82" class="label" fill="#0f6a4a">P-03 미션 수행</text>
+        <text x="58" y="132" font-size="25" font-weight="800">팔을 앞으로 천천히 뻗기</text>
+        <text x="58" y="198" class="small muted" font-weight="800">남은 시간</text>
+        <text x="58" y="248" font-size="48" font-weight="900" fill="#356ae6">18초</text>
+        <circle cx="210" cy="412" r="100" fill="#e2f7ec"/>
+        <circle class="motion-target" cx="210" cy="412" r="48" fill="#24a36b"/>
+        <text x="74" y="552" class="small" font-weight="800" fill="#0f6a4a">목표 지점에 가까워지고 있어요.</text>
+        <rect x="60" y="612" width="140" height="46" rx="13" fill="#e8eeff"/>
+        <text x="92" y="642" class="small" font-weight="800" fill="#356ae6">쉬어가기</text>
+        <circle class="tap-ripple r3" cx="130" cy="635" r="70"/>
+        <rect x="220" y="612" width="140" height="46" rx="13" fill="#ffe8df"/>
+        <text x="250" y="642" class="small" font-weight="800" fill="#ff6b4a">중단 입력</text>
+      </g>
+
+      <g class="screen s4">
+        <text x="58" y="92" font-size="30" font-weight="900" fill="#356ae6">잠시 쉬어가기</text>
+        <rect x="72" y="188" width="250" height="150" rx="16" fill="#e8eeff"/>
+        <text x="142" y="248" font-size="30" font-weight="900" fill="#356ae6">휴식 중</text>
+        <text x="154" y="300" font-size="34" font-weight="900" fill="#356ae6">00:20</text>
+        <rect x="58" y="392" width="304" height="94" rx="14" fill="#eef2f4"/>
+        <text x="82" y="430" class="small">통증이나 어지러움이 있으면</text>
+        <text x="82" y="462" class="small">중단 입력을 선택하세요.</text>
+        <rect x="60" y="590" width="140" height="48" rx="13" fill="#24a36b"/>
+        <text x="92" y="622" class="small" font-weight="800" fill="#ffffff">계속하기</text>
+        <circle class="tap-ripple r4" cx="130" cy="615" r="70"/>
+        <rect x="220" y="590" width="140" height="48" rx="13" fill="#ffe8df"/>
+        <text x="250" y="622" class="small" font-weight="800" fill="#ff6b4a">중단 입력</text>
+      </g>
+
+      <g class="screen s5">
+        <text x="58" y="82" class="label" fill="#0f6a4a">P-03 미션 수행</text>
+        <text x="58" y="132" font-size="25" font-weight="800">팔을 앞으로 천천히 뻗기</text>
+        <text x="58" y="198" class="small muted" font-weight="800">남은 시간</text>
+        <text x="58" y="248" font-size="48" font-weight="900" fill="#356ae6">03초</text>
+        <circle cx="210" cy="412" r="100" fill="#e2f7ec"/>
+        <circle class="motion-target" cx="236" cy="412" r="48" fill="#24a36b"/>
+        <text x="92" y="552" class="small" font-weight="800" fill="#0f6a4a">마지막까지 천천히 유지</text>
+      </g>
+
+      <g class="screen s6">
+        <text x="58" y="82" class="label" fill="#0f6a4a">P-05 완료 요약</text>
+        <text x="58" y="132" font-size="28" font-weight="900">미션 기록</text>
+        <rect x="106" y="180" width="170" height="120" rx="18" fill="#e2f7ec"/>
+        <text x="152" y="252" font-size="38" font-weight="900" fill="#24a36b">10회</text>
+        <line class="rule" x1="66" y1="374" x2="344" y2="374"/>
+        <text x="70" y="350" class="small muted">수행 시간</text>
+        <text x="286" y="350" class="small" font-weight="800">30초</text>
+        <line class="rule" x1="66" y1="446" x2="344" y2="446"/>
+        <text x="70" y="422" class="small muted">중단 사유</text>
+        <text x="302" y="422" class="small" font-weight="800">없음</text>
+        <line class="rule" x1="66" y1="518" x2="344" y2="518"/>
+        <text x="70" y="494" class="small muted">피로도</text>
+        <text x="304" y="494" class="small" font-weight="800">2/5</text>
+        <rect x="58" y="590" width="304" height="54" rx="15" fill="#24a36b"/>
+        <text x="144" y="624" class="small" font-weight="800" fill="#ffffff">저장하고 나가기</text>
+        <circle class="tap-ripple r5" cx="210" cy="617" r="95"/>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(660 292)">
+    <rect x="0" y="0" width="1120" height="430" rx="22" fill="#ffffff" stroke="#d9e1d7" stroke-width="2"/>
+    <text x="42" y="58" font-size="30" font-weight="900">전환 이벤트 타임라인</text>
+    <text x="42" y="94" class="small muted">화면이 왜 넘어가는지 개발자가 확인할 수 있게 이벤트명과 다음 화면ID를 같이 표시</text>
+
+    <g class="event e1" transform="translate(46 132)">
+      <rect width="1010" height="46" rx="12" fill="#e2f7ec"/>
+      <text x="24" y="30" class="small" font-weight="800">01 tapExercise</text>
+      <text x="270" y="30" class="small">P-01 운동 카드 탭</text>
+      <text x="760" y="30" class="small" font-weight="800" fill="#0f6a4a">next: P-02</text>
+    </g>
+    <g class="event e2" transform="translate(46 188)">
+      <rect width="1010" height="46" rx="12" fill="#e2f7ec"/>
+      <text x="24" y="30" class="small" font-weight="800">02 tapStart</text>
+      <text x="270" y="30" class="small">P-02 시작 버튼 탭</text>
+      <text x="760" y="30" class="small" font-weight="800" fill="#0f6a4a">next: P-03</text>
+    </g>
+    <g class="event e3" transform="translate(46 244)">
+      <rect width="1010" height="46" rx="12" fill="#e8eeff"/>
+      <text x="24" y="30" class="small" font-weight="800">03 tapRest</text>
+      <text x="270" y="30" class="small">P-03 쉬어가기 탭</text>
+      <text x="760" y="30" class="small" font-weight="800" fill="#356ae6">next: P-04A</text>
+    </g>
+    <g class="event e4" transform="translate(46 300)">
+      <rect width="1010" height="46" rx="12" fill="#e2f7ec"/>
+      <text x="24" y="30" class="small" font-weight="800">04 tapResume</text>
+      <text x="270" y="30" class="small">P-04A 계속하기 탭</text>
+      <text x="760" y="30" class="small" font-weight="800" fill="#0f6a4a">next: P-03</text>
+    </g>
+    <g class="event e5" transform="translate(46 356)">
+      <rect width="1010" height="46" rx="12" fill="#fff5cc"/>
+      <text x="24" y="30" class="small" font-weight="800">05 timerEnd</text>
+      <text x="270" y="30" class="small">30초 종료 자동 전환</text>
+      <text x="760" y="30" class="small" font-weight="800" fill="#17202a">next: P-05</text>
+    </g>
+  </g>
+
+  <g transform="translate(660 798)">
+    <line x1="28" y1="34" x2="1036" y2="34" stroke="#d9e1d7" stroke-width="8" stroke-linecap="round"/>
+    <g class="progress-dot d1"><circle cx="40" cy="34" r="24" fill="#24a36b"/><text x="12" y="82" class="small" font-weight="800">P-01</text></g>
+    <g class="progress-dot d2"><circle cx="240" cy="34" r="24" fill="#24a36b"/><text x="212" y="82" class="small" font-weight="800">P-02</text></g>
+    <g class="progress-dot d3"><circle cx="440" cy="34" r="24" fill="#24a36b"/><text x="412" y="82" class="small" font-weight="800">P-03</text></g>
+    <g class="progress-dot d4"><circle cx="640" cy="34" r="24" fill="#356ae6"/><text x="604" y="82" class="small" font-weight="800">P-04A</text></g>
+    <g class="progress-dot d5"><circle cx="840" cy="34" r="24" fill="#24a36b"/><text x="812" y="82" class="small" font-weight="800">P-03</text></g>
+    <g class="progress-dot d6"><circle cx="1040" cy="34" r="24" fill="#f6c344"/><text x="1012" y="82" class="small" font-weight="800">P-05</text></g>
+  </g>
+
+  <text x="96" y="1046" class="small muted">애니메이션 클립 샘플 | SVG/XML 기반 | 치료 효과 표현 아님 | 실제 센서/중단 기준은 재활 전문가 확인 필요</text>
+</svg>
